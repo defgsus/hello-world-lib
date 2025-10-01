@@ -55,6 +55,7 @@ git pull
 # create annotated tag with new version (check `git tag -l` to see previous tags) 
 git tag -a v1.2.3
 
+git push
 git push --tags
 
 # create pull-request `development -> main` on github and merge  

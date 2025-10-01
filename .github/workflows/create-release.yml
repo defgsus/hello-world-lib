@@ -2,11 +2,12 @@ name: Create release
 
 on:
   push:
-    # Unfortunately these filters are OR-combined, we can't say main AND tag
-    branches:
-      - main
-    #tags:
-    #  - v*
+    # Unfortunately these filters a OR-combined
+    #branches:
+    #  - '!*'
+    #  - main
+    tags:
+      - v*
 
 permissions:
   contents: write
@@ -16,28 +17,25 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Debug-output
-        run: echo '${{ toJSON(github) }}'
+      - name: Check-out
+        # version 5.0.0: https://github.com/actions/checkout/commit/08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
 
-#      - name: Check-out
-#        # version 5.0.0: https://github.com/actions/checkout/commit/08c6903cd8c0fde910a37f88322edcfb5dd907a8
-#        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
-#
-#      - name: Run tests before release
-#        run: ./tests.sh
-#
-#      - name: Create release files
-#        run: |
-#          mkdir dist
-#          cp hello-world dist/
-#          cp LICENSE dist/
-#
-#      - name: Publish release files
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          tag: ${{ github.ref_name }}
-#        run: |
-#          gh release create "$tag" \
-#              --notes-from-tag \
-#              './dist/hello-world#hello-world - The standalone script' \
-#              './dist/LICENSE#LICENSE - The license file'
+      - name: Run tests before release
+        run: ./tests.sh
+
+      - name: Create release files
+        run: |
+          mkdir dist
+          cp hello-world dist/
+          cp LICENSE dist/
+
+      - name: Publish release files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$(git describe --abbrev=0)" \
+              --notes-from-tag \
+              './dist/hello-world#The standalone script' \
+              './dist/LICENSE#The license file'
