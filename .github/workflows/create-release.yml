@@ -2,12 +2,11 @@ name: Create release
 
 on:
   push:
-    # Unfortunately these filters a OR-combined
-    #branches:
-    #  - '!*'
-    #  - main
-    tags:
-      - v*
+    # Unfortunately these filters are OR-combined
+    branches:
+      - main
+    #tags:
+    #  - v*
 
 permissions:
   contents: write
@@ -35,7 +34,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh release create "$(git describe --abbrev=0)" \
+          export LATEST_TAG="$(git describe --abbrev=0)"
+          echo "Releasing tag $LATEST_TAG"
+          gh release create "$LATEST_TAG" \
               --notes-from-tag \
               './dist/hello-world#The standalone script' \
               './dist/LICENSE#The license file'
