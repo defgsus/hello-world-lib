@@ -1,0 +1,9 @@
+.nova
+.DS_Store
+*.deb
+*.rpm
+*.iml
+.idea/
+env/
+dist/
+scratchpad/
