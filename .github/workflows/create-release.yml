@@ -3,9 +3,9 @@ name: Create release
 on:
   push:
     # Unfortunately these filters a OR-combined
-    #branches:
-    #  - '!*'
-    #  - main
+    branches:
+      - '!*'
+      - main
     tags:
       - v*
 
