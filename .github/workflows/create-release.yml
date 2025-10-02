@@ -53,5 +53,5 @@ jobs:
           echo "Releasing '$LATEST_TAG'"
           gh release create "$LATEST_TAG" \
               --notes-from-tag \
-              './dist/hello-world#The standalone script' \
-              './dist/LICENSE#The license file'
+              './dist/hello-world#hello-world - The standalone script' \
+              './dist/LICENSE#LICENSE - The license file'
