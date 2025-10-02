@@ -49,7 +49,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          export LATEST_TAG=$(github describe --abbrev=0)
+          export LATEST_TAG=$(git describe --abbrev=0)
           echo "Releasing '$LATEST_TAG'"
           gh release create "$LATEST_TAG" \
               --notes-from-tag \
