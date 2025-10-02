@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HELLO_WORLD_VERSION=$(./build_versionstring.sh)
+HELLO_WORLD_VERSION=$(.build-versionstring.sh)
 RELEASE_DATE=$(date +"%Y %B %d")
 
 sed -e "s|__HELLO_WORLD_VERSION__|$HELLO_WORLD_VERSION|g" \

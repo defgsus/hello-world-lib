@@ -1,7 +1,9 @@
 # Test repo for releasing a unix package
 
-[![.github/workflows/run-tests.yml](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml)
+[![.github/workflows/create-release.yml](https://github.com/defgsus/hello-world-lib/actions/workflows/create-release.yml/badge.svg?branch=main)](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml)
 [![.github/workflows/run-tests.yml](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml/badge.svg?branch=development)](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml)
+
+[https://defgsus.github.io/hello-world-lib](https://defgsus.github.io/hello-world-lib)
 
 ---
 
@@ -16,7 +18,7 @@ which prints "Hello World!"
 Tests are run like this:
 
 ```shell
-./tests.sh
+./run-tests.sh
 ```
 
 Previewing the man page:
@@ -36,13 +38,14 @@ Previewing the man page:
   - [ ] Check through https://docs.github.com/en/actions/reference/security/secure-use
   - [ ] Check through https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
   - [x] Use commit sha for pinning third-party actions
-    - Check `Settings > Actions > General > Actions permissions > Require actions to be pinned to a full-length commit SHA`
-  - [x] Make sure, nobody triggers github actions from outside (e.g, https://nx.dev/blog/s1ngularity-postmortem#the-vulnerability)
+    - Enforce with `Settings > Actions > General > Actions permissions > Require actions to be pinned to a full-length commit SHA`
+  - [x] Make sure, nobody triggers github actions from outside (like with https://nx.dev/blog/s1ngularity-postmortem#the-vulnerability)
     - Set `Settings > Actions > General > Approval for running fork pull request workflows from contributors` to `Require approval for all external contributors`
   - [x] Least privilege 
     - Leave `Settings > Actions > General > Workflow permissions` at `Read repository contents and packages permissions`
     - Use `permissions` option in specific workflows as needed 
-      
+  - [x] Protect all branches from force-pushing (it just messes things up)
+
 
 ## What maintainers do ...
 
@@ -52,14 +55,14 @@ Previewing the man page:
 git checkout development
 git pull
 
-# ... do stuff ...
-#git add / git commit / git push
+# ... develop stuff ...
+# git add / git commit / git push ...
 
+git commit
 # create annotated tag with new version (check `git tag -l` to see previous tags) 
 git tag -a v1.2.3
 
-git push
-git push --tags
+git push && git push --tags
 
-# create pull-request `development -> main` on github and merge  
+# create pull-request `development -> main` on github ... and merge  
 ```
