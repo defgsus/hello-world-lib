@@ -65,6 +65,7 @@ jobs:
           git checkout gh-pages || git checkout -b gh-pages
           git branch --set-upstream-to=origin/gh-pages
           git pull || echo "gh-pages branch does not yet exist"
+          git merge main
           ./build-docs.sh
           git add -f docs/
           git config --local user.email "$USER_EMAIL"
