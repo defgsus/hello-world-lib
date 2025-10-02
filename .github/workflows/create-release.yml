@@ -3,8 +3,8 @@ name: Create release
 on:
   push:
     # Unfortunately these filters are OR-combined
-    branches:
-      - main
+    #branches:
+    #  - main
     #tags:
     #  - v*
 
@@ -20,23 +20,33 @@ jobs:
         # version 5.0.0: https://github.com/actions/checkout/commit/08c6903cd8c0fde910a37f88322edcfb5dd907a8
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
 
-      - name: Run tests before release
-        run: ./tests.sh
-
-      - name: Create release files
-        run: |
-          mkdir dist
-          cp hello-world dist/
-          cp LICENSE dist/
-
-      - name: Publish release files
+      - name: Debuggin'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref_name }}
+          ref_name: ${{ github.ref_name }}
+          ref: ${{ github.ref }}
         run: |
-          export LATEST_TAG="$(git describe --abbrev=0)"
-          echo "Releasing tag $LATEST_TAG"
-          gh release create "$LATEST_TAG" \
-              --notes-from-tag \
-              './dist/hello-world#The standalone script' \
-              './dist/LICENSE#The license file'
+          echo 'ref_name ${ref_name}'
+          echo 'ref ${ref}'
+          git describe
+          git describe --all
+          git describe --tags
+#      - name: Run tests before release
+#        run: ./tests.sh
+#
+#      - name: Create release files
+#        run: |
+#          mkdir dist
+#          cp hello-world dist/
+#          cp LICENSE dist/
+#
+#      - name: Publish release files
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          tag: ${{ github.ref_name }}
+#        run: |
+#          export LATEST_TAG="$(git describe --abbrev=0)"
+#          echo "Releasing tag $LATEST_TAG"
+#          gh release create "$LATEST_TAG" \
+#              --notes-from-tag \
+#              './dist/hello-world#The standalone script' \
+#              './dist/LICENSE#The license file'
