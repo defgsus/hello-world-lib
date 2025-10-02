@@ -53,6 +53,7 @@ Previewing the man page:
     - Leave `Settings > Actions > General > Workflow permissions` at `Read repository contents and packages permissions`
     - Use [`permissions`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions) option in specific workflows as needed 
   - [x] Protect all branches from force-pushing (it just messes things up)
+  - [ ] Require all tests to run before merging to `main`
 
 
 ## What maintainers do ...
