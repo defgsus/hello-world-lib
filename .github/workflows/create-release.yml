@@ -55,7 +55,7 @@ jobs:
       - name: Publish docs on gh-pages
         env:
           USER_EMAIL: ${{ github.event.pusher.email }}
-          USER_NAME: ${{ event.event.pusher.name }}
+          USER_NAME: ${{ github.event.pusher.name }}
         run: |
           git config --local user.email "$USER_EMAIL"
           git config --local user.name "$USER_NAME"
