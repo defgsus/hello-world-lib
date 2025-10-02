@@ -33,7 +33,10 @@ Previewing the man page:
 - [ ] Build a manpage (via github actions)
 - [ ] Publish documentation on github pages (via github actions)
 - [ ] Supply chain security
-  - [ ] Check through https://docs.github.com/en/actions/reference/security/secure-use 
+  - [ ] Check through https://docs.github.com/en/actions/reference/security/secure-use
+  - [ ] Check through https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
+  - [x] Use commit sha for pinning third-party actions
+    - Check `Settings > Actions > General > Actions permissions > Require actions to be pinned to a full-length commit SHA`
   - [x] Make sure, nobody triggers github actions from outside (e.g, https://nx.dev/blog/s1ngularity-postmortem#the-vulnerability)
     - Set `Settings > Actions > General > Approval for running fork pull request workflows from contributors` to `Require approval for all external contributors`
   - [x] Least privilege 
