@@ -62,4 +62,6 @@ jobs:
           git checkout -b gh-pages || git checkout gh-pages
           git add -f docs/
           git commit -a -m "Update docs $(git describe)"
-          git push -u origin gh-pages || (git pull --rebase && git push) 
+          git branch --set-upstream-to=origin/gh-pages
+          git pull --rebase || echo "gh-pages branch not yet existing" 
+          git push 
