@@ -39,6 +39,8 @@ Previewing the man page:
   - [x] Publishes release files using the github cli: `gh create release "<tag>"`. 
   - [ ] Publishes documentation on github pages ([defgsus.github.io/hello-world-lib/](https://defgsus.github.io/hello-world-lib/))
     - by committing the `docs/` directory
+    - Set `Settings > Pages > Source` to `Deploy to a branch`
+    - Set `Settings > Pages > Branch` to `gh-pages` and 'Select folder` to `/docs`
 - [x] On any `pull request` update, the [run-tests.yml](.github/workflows/run-tests.yml) workflow will ...
   - [x] Run tests ([run-tests.sh](run-tests.sh))
   - [x] Test package and doc building ([build-packages.sh](build-packages.sh))

@@ -1,4 +1,4 @@
-% hello-world(1) Version __HELLO_WORLD_VERSION__ | General Commands Manual
+% hello-world(1) Version __RELEASE_VERSION__ | General Commands Manual
 %
 % __RELEASE_DATE__
 
@@ -51,11 +51,10 @@ REPORTING BUGS
 ==============
 
 Bugs and feature requests can be issued at
-https://github.com/defgsus/hello-world-lib/issues.
+[https://github.com/defgsus/hello-world-lib/issues](https://github.com/defgsus/hello-world-lib/issues).
 
 
 AUTHORS
 =======
 
-Written by defgsus (https://defgsus.github.io)
-MIT License
+Written by defgsus ([https://defgsus.github.io](https://defgsus.github.io)), MIT License
