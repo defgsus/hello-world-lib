@@ -25,11 +25,12 @@ jobs:
           ref_name: ${{ github.ref_name }}
           ref: ${{ github.ref }}
         run: |
-          echo 'ref_name ${ref_name}'
-          echo 'ref ${ref}'
-          git describe
-          git describe --all
+          echo 'ref_name $ref_name'
+          echo 'ref $ref'
           git describe --tags
+          git describe --all
+          git describe
+
 #      - name: Run tests before release
 #        run: ./tests.sh
 #
