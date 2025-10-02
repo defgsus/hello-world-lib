@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   release:
+    if: github.ref_name == 'main'
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -28,29 +29,27 @@ jobs:
           ref_name: ${{ github.ref_name }}
           ref: ${{ github.ref }}
         run: |
-          echo 'ref_name $ref_name'
-          echo 'ref $ref'
           git describe --tags
           git describe --all
           git describe
+          echo "${{ toJSON(github) }}"
 
-#      - name: Run tests before release
-#        run: ./tests.sh
-#
-#      - name: Create release files
-#        run: |
-#          mkdir dist
-#          cp hello-world dist/
-#          cp LICENSE dist/
-#
-#      - name: Publish release files
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          tag: ${{ github.ref_name }}
-#        run: |
-#          export LATEST_TAG="$(git describe --abbrev=0)"
-#          echo "Releasing tag $LATEST_TAG"
-#          gh release create "$LATEST_TAG" \
-#              --notes-from-tag \
-#              './dist/hello-world#The standalone script' \
-#              './dist/LICENSE#The license file'
+      - name: Run tests before release
+        run: ./tests.sh
+
+      - name: Create release files
+        run: |
+          mkdir dist
+          cp hello-world dist/
+          cp LICENSE dist/
+
+      - name: Publish release files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          echo "Releasing $tag"
+          gh release create "$tag" \
+              --notes-from-tag \
+              './dist/hello-world#The standalone script' \
+              './dist/LICENSE#The license file'
