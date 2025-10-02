@@ -19,12 +19,9 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
         with:
           fetch-tags: true
-          fetch-depth: 0
+          fetch-depth: 0    # fetch all tags and branches
 
 #      - name: Debuggin'
-#        env:
-#          ref_name: ${{ github.ref_name }}
-#          ref: ${{ github.ref }}
 #        run: |
 #          git describe --tags
 #          git describe --all
@@ -54,3 +51,15 @@ jobs:
               './dist/LICENSE#LICENSE' \
               './dist/README.md#README.md' \
               './dist/manpage.md#manpage.md - Man page as markdown'
+
+      - name: Publish docs on gh-pages
+        env:
+          USER_EMAIL: ${{ event.pusher.email }}
+          USER_NAME: ${{ event.pusher.name }}
+        run: |
+          git config --local user.email "$USER_EMAIL"
+          git config --local user.name "$USER_NAME"
+          git checkout -b gh-pages | git checkout gh-pages
+          git add -f docs/
+          git commit -a -m "Update docs $(git describe)"
+          git push -u origin gh-pages

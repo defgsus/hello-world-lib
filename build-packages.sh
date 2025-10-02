@@ -6,7 +6,7 @@ set -e
 export HELLO_WORLD_VERSION=$(./build-versionstring.sh)
 export RELEASE_DATE=$(date +"%Y %B %d")
 
-# -- create dist folder --
+# -- create dist/ folder --
 
 rm -rf dist
 mkdir dist
@@ -21,10 +21,11 @@ sed -e "s|__HELLO_WORLD_VERSION__|$HELLO_WORLD_VERSION|g" \
 
 cd ..
 
-# -- render htmls to docs/ --
+# -- create docs/ folder --
 
 rm -rf docs/
 mkdir docs
+touch docs/.nojekyll
 
 sed -e "s|__HELLO_WORLD_VERSION__|$HELLO_WORLD_VERSION|g" \
     -e "s|__RELEASE_DATE__|$RELEASE_DATE|g" index.md \

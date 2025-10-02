@@ -30,10 +30,18 @@ Previewing the man page:
 
 ## TODO
 
-- [ ] Trigger releases via tags
-- [ ] Build package (via github actions)
-- [ ] Build a manpage (via github actions)
-- [ ] Publish documentation on github pages (via github actions)
+- [ ] After merge to `main` branch, the [create-release.yml](.github/workflows/create-release.yml) workflow runs and ...
+  - [x] Uses the latest `git tag` for versioning.
+    - Merging to `main` without a new `tag` will fail at the `gh create release` stage.
+  - [x] Builds a manpage via [pandoc](https://pandoc.org/)
+  - [ ] Builds rpm & dpm package
+  - [ ] Builds a Mac OS package
+  - [x] Publishes release files using the github cli: `gh create release "<tag>"`. 
+  - [ ] Publishes documentation on github pages ([defgsus.github.io/hello-world-lib/](https://defgsus.github.io/hello-world-lib/))
+    - by committing the `docs/` directory
+- [x] On any `pull request` update, the [run-tests.yml](.github/workflows/run-tests.yml) workflow will ...
+  - [x] Run tests ([run-tests.sh](run-tests.sh))
+  - [x] Test package and doc building ([build-packages.sh](build-packages.sh))
 - [ ] Supply chain security
   - [ ] Check through https://docs.github.com/en/actions/reference/security/secure-use
   - [ ] Check through https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
@@ -43,7 +51,7 @@ Previewing the man page:
     - Set `Settings > Actions > General > Approval for running fork pull request workflows from contributors` to `Require approval for all external contributors`
   - [x] Least privilege 
     - Leave `Settings > Actions > General > Workflow permissions` at `Read repository contents and packages permissions`
-    - Use `permissions` option in specific workflows as needed 
+    - Use [`permissions`](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#permissions) option in specific workflows as needed 
   - [x] Protect all branches from force-pushing (it just messes things up)
 
 
@@ -57,12 +65,18 @@ git pull
 
 # ... develop stuff ...
 # git add / git commit / git push ...
+# create a pull-request on github to run the test CI 
+# ... git add / git commit / git push ...
 
+# eventually
 git commit
 # create annotated tag with new version (check `git tag -l` to see previous tags) 
 git tag -a v1.2.3
 
 git push && git push --tags
 
-# create pull-request `development -> main` on github ... and merge  
+# create pull-request `development -> main` on github, review, merge  
 ```
+
+For security reasons, it's probably best to **not** use the github client and not 
+have a github token on your dev machine and instead manage pull-requests in the browser. 
