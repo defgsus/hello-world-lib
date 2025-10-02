@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   release:
-    if: github.ref_name == 'main'
+    if: ${{ github.ref_name == 'main' || github.ref_name == 'development' }}
     name: Release
     runs-on: ubuntu-latest
     steps:
