@@ -51,6 +51,6 @@ jobs:
           gh release create "$LATEST_TAG" \
               --notes-from-tag \
               './dist/hello-world#hello-world - The standalone script' \
-              './dist/LICENSE#LICENSE'
-              './dist/README.md#README.md'
+              './dist/LICENSE#LICENSE' \
+              './dist/README.md#README.md' \
               './dist/manpage.md#manpage.md - Man page as markdown'
