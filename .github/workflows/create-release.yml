@@ -60,9 +60,11 @@ jobs:
           git config --local user.email "$USER_EMAIL"
           git config --local user.name "$USER_NAME"
           git fetch
+          git stash
           git checkout gh-pages || git checkout -b gh-pages
+          git branch --set-upstream-to=origin/gh-pages
+          git pull
+          git stash apply
           git add -f docs/
           git commit -a -m "Update docs $(git describe)"
-          git branch --set-upstream-to=origin/gh-pages
-          git pull --rebase || echo "gh-pages branch not yet existing" 
           git push 
