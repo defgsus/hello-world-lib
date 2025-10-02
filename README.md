@@ -3,7 +3,7 @@
 [![.github/workflows/create-release.yml](https://github.com/defgsus/hello-world-lib/actions/workflows/create-release.yml/badge.svg?branch=main)](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml)
 [![.github/workflows/run-tests.yml](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml/badge.svg?branch=development)](https://github.com/defgsus/hello-world-lib/actions/workflows/run-tests.yml)
 
-[https://defgsus.github.io/hello-world-lib](https://defgsus.github.io/hello-world-lib)
+[defgsus.github.io/hello-world-lib/](https://defgsus.github.io/hello-world-lib/)
 
 ---
 
