@@ -12,7 +12,7 @@ jobs:
     steps:
       #- name: Debugging
       #  env:
-      #    EVENT: ${{ toJSON(event) }}
+      #    EVENT: ${{ toJSON(github) }}
       #  run: echo "$EVENT"
 
       - name: Check-out
