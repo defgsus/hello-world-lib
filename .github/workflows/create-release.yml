@@ -34,6 +34,9 @@ jobs:
       - name: Run tests before release
         run: ./tests.sh
 
+      - name: Install build dependencies
+        run: sudo apt install pandoc -y
+
       - name: Create release files
         run: ./build-packages.sh
 
