@@ -57,6 +57,8 @@ jobs:
           USER_EMAIL: ${{ github.event.pusher.email }}
           USER_NAME: ${{ github.event.pusher.name }}
         run: |
+          git config --local user.email "$USER_EMAIL"
+          git config --local user.name "$USER_NAME"
           # get release tag from main branch 
           export RELEASE_VERSION=$(./build-versionstring.sh)
           export RELEASE_TAG=$(git describe --abbrev=0)
@@ -68,7 +70,5 @@ jobs:
           git merge main
           ./build-docs.sh
           git add -f docs/
-          git config --local user.email "$USER_EMAIL"
-          git config --local user.name "$USER_NAME"
           git commit -a -m "Update docs $(git describe)"
           git push 
