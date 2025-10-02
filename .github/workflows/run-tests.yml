@@ -2,8 +2,6 @@ name: Run tests
 
 on:
   pull_request:
-  push:
-    branches: ['!main']
 
 jobs:
   run-tests:
@@ -15,5 +13,12 @@ jobs:
       - name: Check-out
         # version 5.0.0: https://github.com/actions/checkout/commit/08c6903cd8c0fde910a37f88322edcfb5dd907a8
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+
       - name: Run tests
-        run: ./tests.sh
+        run: ./run-tests.sh
+
+      - name: Install build dependencies
+        run: sudo apt install pandoc -y
+
+      - name: Test package building
+        run: ./build-packages.sh

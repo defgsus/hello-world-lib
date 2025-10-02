@@ -34,11 +34,11 @@ jobs:
       - name: Run tests before release
         run: ./tests.sh
 
+      - name: Install build dependencies
+        run: sudo apt install pandoc -y
+
       - name: Create release files
-        run: |
-          mkdir dist
-          cp hello-world dist/
-          cp LICENSE dist/
+        run: ./build-packages.sh
 
       # The `gh release create` will fail if the tag has been released already
       - name: Publish release files
@@ -51,4 +51,6 @@ jobs:
           gh release create "$LATEST_TAG" \
               --notes-from-tag \
               './dist/hello-world#hello-world - The standalone script' \
-              './dist/LICENSE#LICENSE - The license file'
+              './dist/LICENSE#LICENSE'
+              './dist/README.md#README.md'
+              './dist/manpage.md#manpage.md - Man page as markdown'
