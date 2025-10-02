@@ -27,3 +27,6 @@ jobs:
 
       - name: Test package building
         run: ./build-packages.sh
+
+      - name: Test docs building
+        run: ./build-docs.sh
