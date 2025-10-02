@@ -32,7 +32,7 @@ jobs:
 #          echo "${{ toJSON(github) }}"
 
       - name: Run tests before release
-        run: ./tests.sh
+        run: ./run-tests.sh
 
       - name: Install build dependencies
         run: sudo apt install pandoc -y
